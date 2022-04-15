@@ -1,0 +1,151 @@
+﻿<h1 class="page-title">Crear Empleado</h1>
+
+<div class="portlet blue box erp-portlet-form" id="FormEmpleado">
+    <div class="portlet-title">
+        <div class="caption">
+            <i class="fa fa-plus"></i>
+            <span id="titleForm">Nuevo Empleado</span>
+        </div>
+        <div class="tools">
+            <a class="font-white" title="Insertar/Actualizar"><i class="fa fa-plus" id="AddEdit"></i></a>
+        </div>
+    </div>
+    <div class="portlet-body form" id="FormDetail">
+
+        <input data-val="true" data-val-number="El campo Tipo régimen debe ser un número." data-val-required="'Tipo régimen' no debe estar vacío." id="TERCOD" name="TERCOD" type="hidden" value="8095">
+        <div class="form-body">
+            <div class="tabbable-line" style="padding-top:0px;">
+                <ul class="nav nav-tabs ">
+                    <li class="active">
+                        <a href="#tab_3_1" data-toggle="tab" aria-expanded="true"> Información Básica </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane padding-tb-15 active" id="tab_3_1">
+                        <form id="formulario" method="post" action="CrearEmpleado" enctype="multipart/form-data">
+                            <div class="onoffswitch gm-switch" style="-webkit-transform:  translateY(-60px) !important;    transform:  translateY(-60px) !important;">
+                                <input checked="checked" class="onoffswitch-checkbox" id="chkEstado" name="TERACT" type="checkbox" value="true">
+                                <label class="onoffswitch-label" for="chkEstado">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="fileinput fileinput-new thumbnail text-center erp-fileinput-thumb" data-provides="fileinput">
+                                        <div class="fileinput-new thumbnail">
+                                            <img id="ImagenTercero" src="~/Content/Theme/img/userDefault.jpg" alt="" style="max-width:100%">
+                                        </div>
+                                        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                        <div class="text-center">
+                                            <span class="btn default btn-file">
+                                                <span class="fileinput-new ">Subir Imagen </span>
+                                                <span class="fileinput-exists">Cambiar</span>
+                                                <input type="file" accept="image/x-png,image/gif,image/jpeg" name="imageUser" id="imageUser">
+                                            </span>
+                                            <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">Quitar</a>
+                                        </div>
+                                    </div>
+                                    <!-- END FILE INPUT -->
+                                </div>
+                                <!-- END MAIN COl 2 -->
+
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Nombre</label>
+                                                <input class="form-control input-circle" id="nombre" name="nombre" placeholder="Nombre" type="text" value="" required>
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="TERNOM" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Apellidos</label>
+                                                <input class="form-control input-circle" id="apellidos" name="apellidos" placeholder="Apellidos" type="text" value="" required>
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="TERAPE" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END ROW -->
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Tipo de Documento</label>
+                                                <select class="form-control" id="tipodocumento" name="tipodocumento" required>
+                                                    <option value="">Seleccione</option>
+                                                    @foreach (WebApp.Models.TipoDocumento item in ViewBag.tipodocumento)
+                                                    {
+                                                        <option value="@item.idTipoDocumento">@item.nombreTipoDocumento</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label class="control-label">Número Documento</label>
+                                                <input class="form-control input-circle SoloNumeros" id="numerodocumento" maxlength="15" name="numerodocumento" placeholder="Número Documento" type="text" value="" required>
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="TERDOC" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Correo Electrónico</label>
+                                                <input class="form-control input-circle" id="correo" name="correo" placeholder="Correo Electrónico" type="text" value="" required>
+                                                <span class="field-validation-valid text-danger" data-valmsg-for="TERMAIL" data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Género</label>
+                                                <select class="form-control" id="genero" name="genero" required>
+                                                    <option value="">Seleccione</option>
+                                                    @foreach (WebApp.Models.Genero item in ViewBag.genero)
+                                                    {
+                                                        <option value="@item.idGenero">@item.nombreGenero</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Edad</label>
+                                                <input class="form-control input-circle valid SoloNumeros" id="edad" name="edad" placeholder="Edad" type="text" value="" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- END ROW -->
+                                </div>
+                                <!-- END COl 10 -->
+                            </div>
+                            <!-- END ROW -->
+                            <div class="form-actions right" style="margin-top:15px;" id="BotonesTerceros">
+                                <button type="button" class="btn btn-circle green margin-right-10 " title="Guardar  Empleados"><i class="fa fa-floppy-o">&nbsp;</i>Guardar </button>
+                                <button type="button" class="btn btn-circle green btn-outline btn-border-1x" title="Cancelar operación"> Cancelar</button>
+                            </div>
+                        </form>
+
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function GuardarDatos()
+    {
+        $.ajax({
+            url: "",
+            type: "post",
+            data: {
+
+            }
+        })
+    }
+
+</script>

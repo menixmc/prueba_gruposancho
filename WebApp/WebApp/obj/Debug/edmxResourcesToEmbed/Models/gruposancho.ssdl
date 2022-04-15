@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Gruposancho.Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="empleado">
+    <Key>
+      <PropertyRef Name="idEmpleado" />
+    </Key>
+    <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="100" />
+    <Property Name="Apellidos" Type="varchar" MaxLength="100" />
+    <Property Name="TipoDocumentoId" Type="int" Nullable="false" />
+    <Property Name="NumeroDocumento" Type="varchar" MaxLength="20" />
+    <Property Name="CorreoElectronico" Type="varchar" MaxLength="100" />
+    <Property Name="GeneroId" Type="int" Nullable="false" />
+    <Property Name="edad" Type="int" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genero">
+    <Key>
+      <PropertyRef Name="idGenero" />
+    </Key>
+    <Property Name="idGenero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreGenero" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TipoDocumento">
+    <Key>
+      <PropertyRef Name="idTipoDocumento" />
+    </Key>
+    <Property Name="idTipoDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombreTipoDocumento" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__empleado__Genero__3B75D760">
+    <End Role="Genero" Type="Self.Genero" Multiplicity="1" />
+    <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genero">
+        <PropertyRef Name="idGenero" />
+      </Principal>
+      <Dependent Role="empleado">
+        <PropertyRef Name="GeneroId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__empleado__TipoDo__3A81B327">
+    <End Role="TipoDocumento" Type="Self.TipoDocumento" Multiplicity="1" />
+    <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoDocumento">
+        <PropertyRef Name="idTipoDocumento" />
+      </Principal>
+      <Dependent Role="empleado">
+        <PropertyRef Name="TipoDocumentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GruposanchoModelStoreContainer">
+    <EntitySet Name="empleado" EntityType="Self.empleado" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoDocumento" EntityType="Self.TipoDocumento" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__empleado__Genero__3B75D760" Association="Self.FK__empleado__Genero__3B75D760">
+      <End Role="Genero" EntitySet="Genero" />
+      <End Role="empleado" EntitySet="empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FK__empleado__TipoDo__3A81B327" Association="Self.FK__empleado__TipoDo__3A81B327">
+      <End Role="TipoDocumento" EntitySet="TipoDocumento" />
+      <End Role="empleado" EntitySet="empleado" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
